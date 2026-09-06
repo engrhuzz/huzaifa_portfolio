@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Muhammad Huzaifa Rajput — Electrical Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#14171c;
+    --panel:#1b2028;
+    --panel-2:#20262f;
+    --line:#2c333d;
+    --text:#e7eaee;
+    --text-dim:#8b94a3;
+    --amber:#ff9142;
+    --teal:#4fd8c4;
+    --radius:3px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:'IBM Plex Sans',sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--amber);color:#14171c;}
+  a{color:inherit;}
+  .mono{font-family:'IBM Plex Mono',monospace;}
+  .wrap{max-width:920px;margin:0 auto;padding:0 28px;}
+  .prose{max-width:640px;}
+
+  /* focus visibility */
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--amber);
+    outline-offset:3px;
+  }
+
+  header.nav{
+    position:sticky; top:0; z-index:20;
+    background:rgba(20,23,28,.88);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:920px;margin:0 auto;padding:16px 28px;
+    display:flex;justify-content:space-between;align-items:center;
+  }
+  .nav-mark{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--text-dim);letter-spacing:.02em;}
+  .nav-mark b{color:var(--amber);font-weight:500;}
+  .nav-links{display:flex;gap:22px;font-size:14px;}
+  .nav-links a{text-decoration:none;color:var(--text-dim);transition:color .15s;}
+  .nav-links a:hover{color:var(--text);}
+
+  /* ---- HERO ---- */
+  .hero{
+    padding:96px 0 72px;
+    border-bottom:1px solid var(--line);
+  }
+  .hero-tag{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12.5px;color:var(--teal);
+    letter-spacing:.06em;
+    margin:0 0 18px;
+  }
+  .hero h1{
+    font-size:clamp(34px,5.4vw,52px);
+    font-weight:700;
+    line-height:1.08;
+    margin:0 0 14px;
+    letter-spacing:-.01em;
+  }
+  .hero p.role{
+    font-size:18px;
+    color:var(--text-dim);
+    margin:0 0 28px;
+    max-width:520px;
+  }
+  .hero-meta{
+    display:flex;flex-wrap:wrap;gap:10px 28px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12.5px;color:var(--text-dim);
+  }
+  .hero-meta span b{color:var(--text);font-weight:500;}
+
+  /* schematic diagram */
+  .diagram{
+    margin-top:56px;
+    border:1px solid var(--line);
+    background:var(--panel);
+    border-radius:var(--radius);
+    padding:20px 20px 14px;
+  }
+  .diagram-label{
+    font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text-dim);
+    display:flex;justify-content:space-between;margin-bottom:10px;
+  }
+  svg#lineSvg{display:block;width:100%;height:auto;}
+  .flow-dot{ animation: travel 5s linear infinite; }
+  @keyframes travel{
+    0%{ offset-distance:0%; }
+    100%{ offset-distance:100%; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .flow-dot{ animation:none; }
+  }
+
+  section{padding:64px 0;border-bottom:1px solid var(--line);}
+  section:last-of-type{border-bottom:none;}
+  h2.section-title{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12.5px;
+    color:var(--text-dim);
+    letter-spacing:.08em;
+    margin:0 0 28px;
+    display:flex;align-items:center;gap:12px;
+  }
+  h2.section-title::after{
+    content:'';flex:1;height:1px;background:var(--line);
+  }
+
+  /* about */
+  .about-grid{display:grid;grid-template-columns:1fr;gap:20px;}
+  .about p{color:var(--text-dim);font-size:15.5px;margin:0 0 14px;}
+  .about p:last-child{margin-bottom:0;}
+  .about strong{color:var(--text);font-weight:500;}
+
+  /* skills */
+  .skill-groups{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:32px 40px;}
+  .skill-group h3{
+    font-size:13px;font-weight:500;color:var(--amber);
+    margin:0 0 12px;font-family:'IBM Plex Mono',monospace;letter-spacing:.03em;
+  }
+  .skill-group ul{list-style:none;margin:0;padding:0;}
+  .skill-group li{
+    font-size:14.5px;color:var(--text);
+    padding:7px 0;border-top:1px solid var(--line);
+  }
+  .skill-group li:first-of-type{border-top:none;}
+
+  /* projects */
+  .project{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:28px 26px;
+    margin-bottom:22px;
+  }
+  .project.featured{border-color:#3a4250;}
+  .project-head{
+    display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;
+    margin-bottom:10px;
+  }
+  .project h3{font-size:19px;margin:0;font-weight:600;line-height:1.3;}
+  .project .role{font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--text-dim);white-space:nowrap;}
+  .project p.desc{color:var(--text-dim);font-size:14.5px;margin:0 0 18px;max-width:600px;}
+  .stat-row{display:flex;flex-wrap:wrap;gap:0;border-top:1px solid var(--line);}
+  .stat{
+    flex:1 1 120px;
+    padding:14px 18px 0 0;
+    border-right:1px solid var(--line);
+  }
+  .stat:last-child{border-right:none;}
+  .stat .num{font-family:'IBM Plex Mono',monospace;font-size:20px;color:var(--teal);display:block;}
+  .stat .lbl{font-size:11.5px;color:var(--text-dim);}
+  .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;}
+  .tag{
+    font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text-dim);
+    border:1px solid var(--line);padding:4px 9px;border-radius:2px;
+  }
+  .doc-link{
+    display:inline-block;margin-top:16px;font-size:12px;color:var(--teal);
+    text-decoration:none;border-bottom:1px solid transparent;
+  }
+  .doc-link:hover{border-bottom-color:var(--teal);}
+
+  /* gallery */
+  .gallery{
+    display:grid;grid-template-columns:repeat(2,1fr);gap:14px;
+    margin-top:22px;
+  }
+  .gallery figure{margin:0;}
+  .gallery figure.gallery-wide{grid-column:1 / -1;}
+  .gallery img{
+    display:block;width:100%;height:auto;
+    background:#f4f5f7;
+    border:1px solid var(--line);
+    border-radius:2px;
+  }
+  .gallery figcaption{
+    font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text-dim);
+    margin-top:6px;
+  }
+  @media (max-width:560px){
+    .gallery{grid-template-columns:1fr;}
+  }
+
+  /* coursework */
+  .coursework{border-top:1px solid var(--line);}
+  .cw-item{
+    display:grid;grid-template-columns:100px 1fr;gap:20px;
+    padding:16px 0;border-bottom:1px solid var(--line);
+  }
+  .cw-sem{font-size:11.5px;color:var(--amber);padding-top:2px;}
+  .cw-body h3{margin:0 0 5px;font-size:15px;font-weight:600;}
+  .cw-body p{margin:0;color:var(--text-dim);font-size:14px;max-width:600px;}
+
+  /* experience */
+  .exp-item{display:grid;grid-template-columns:130px 1fr;gap:20px;padding:18px 0;border-top:1px solid var(--line);}
+  .exp-item:first-child{border-top:none;}
+  .exp-item .period{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--text-dim);}
+  .exp-item h3{margin:0 0 4px;font-size:15.5px;font-weight:600;}
+  .exp-item p{margin:0;color:var(--text-dim);font-size:14.5px;}
+
+  /* contact */
+  .contact-grid{display:flex;flex-wrap:wrap;gap:14px 40px;}
+  .contact-item{font-size:15px;}
+  .contact-item .k{display:block;font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--text-dim);margin-bottom:4px;}
+  .contact-item a{text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:1px;transition:border-color .15s;}
+  .contact-item a:hover{border-color:var(--amber);}
+
+  footer{padding:32px 0 48px;}
+  footer p{font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--text-dim);margin:0;}
+
+  @media (max-width:640px){
+    .hero{padding:64px 0 48px;}
+    .stat-row{flex-direction:column;}
+    .stat{border-right:none;border-top:1px solid var(--line);padding:14px 0 0;}
+    .stat:first-child{border-top:none;}
+    .exp-item{grid-template-columns:1fr;gap:4px;}
+    .cw-item{grid-template-columns:1fr;gap:4px;}
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="nav-mark">MH<b>R</b> / 2026</div>
+    <nav class="nav-links">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#work">Work</a>
+      <a href="#research">Research</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+  <section class="hero">
+    <p class="hero-tag mono">ELECTRICAL ENGINEERING — AUTOMATION &amp; CONTROL</p>
+    <h1>Muhammad Huzaifa Rajput</h1>
+    <p class="role">I build automation and control systems — from embedded hardware and PLC-adjacent logic to the applied computer vision that lets machines make decisions on the line.</p>
+    <div class="hero-meta">
+      <span>B.E. — <b>QUEST, Nawabshah</b></span>
+      <span>Focus — <b>Automation, Embedded Systems, Applied ML/CV</b></span>
+      <span>Status — <b>Open to opportunities</b></span>
+    </div>
+
+    <div class="diagram" aria-hidden="true">
+      <div class="diagram-label">
+        <span>FIG. 01 — SORTING LINE, SIGNAL FLOW</span>
+        <span>REF: FYP-2026</span>
+      </div>
+      <svg id="lineSvg" viewBox="0 0 860 160" xmlns="http://www.w3.org/2000/svg">
+        <line x1="40" y1="80" x2="820" y2="80" stroke="#2c333d" stroke-width="2"/>
+        <path id="flowPath" d="M40,80 L820,80" fill="none" stroke="none"/>
+        <circle class="flow-dot" r="4" fill="#ff9142" style="offset-path:path('M40,80 L820,80');"/>
+
+        <g font-family="IBM Plex Mono" font-size="10" fill="#8b94a3">
+          <rect x="20" y="60" width="40" height="40" fill="none" stroke="#3a4250"/>
+          <text x="40" y="115" text-anchor="middle">CAM</text>
+
+          <rect x="230" y="55" width="50" height="50" fill="none" stroke="#3a4250"/>
+          <text x="255" y="120" text-anchor="middle">YOLOv8n</text>
+
+          <rect x="410" y="55" width="50" height="50" fill="none" stroke="#3a4250"/>
+          <text x="435" y="120" text-anchor="middle">Pi 3 / TFLite</text>
+
+          <rect x="590" y="55" width="50" height="50" fill="none" stroke="#3a4250"/>
+          <text x="615" y="120" text-anchor="middle">Servo x2</text>
+
+          <rect x="770" y="55" width="50" height="50" fill="none" stroke="#3a4250"/>
+          <text x="795" y="120" text-anchor="middle">Bins</text>
+        </g>
+      </svg>
+    </div>
+  </section>
+
+  <section id="about">
+    <h2 class="section-title">ABOUT</h2>
+    <div class="about-grid prose">
+      <div class="about">
+        <p>I'm a recent <strong>Electrical Engineering (Automation &amp; Control)</strong> graduate from <strong>Quaid-e-Awam University of Engineering, Sciences &amp; Technology (QUEST), Nawabshah</strong>.</p>
+        <p>My work sits at the intersection of control systems, embedded hardware, and applied machine learning — designing systems that sense, decide, and act in the physical world, not just on a screen.</p>
+        <p>Most recently, that meant building a working recyclable-waste sorting line from scratch: camera to model to motor.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <h2 class="section-title">SKILLS</h2>
+    <div class="skill-groups">
+      <div class="skill-group">
+        <h3>CONTROL &amp; AUTOMATION</h3>
+        <ul>
+          <li>Control systems design</li>
+          <li>Sensor &amp; actuator integration</li>
+          <li>Motor drive circuits</li>
+          <li>GPIO / embedded I/O</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h3>APPLIED ML / CV</h3>
+        <ul>
+          <li>YOLO-based object detection</li>
+          <li>TensorFlow Lite deployment</li>
+          <li>OpenCV pipelines</li>
+          <li>Edge inference (Raspberry Pi)</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h3>HARDWARE</h3>
+        <ul>
+          <li>Embedded systems (Raspberry Pi)</li>
+          <li>Circuit prototyping</li>
+          <li>Ultrasonic &amp; proximity sensing</li>
+          <li>Transistor-driven motor control</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h3>SOFTWARE &amp; DOCS</h3>
+        <ul>
+          <li>Python</li>
+          <li>Tkinter GUI development</li>
+          <li>Technical documentation / IEEE format</li>
+          <li>Patent &amp; thesis writing</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="work">
+    <h2 class="section-title">FEATURED PROJECT</h2>
+    <div class="project featured">
+      <div class="project-head">
+        <h3>AI-Enabled Conveyor Belt Object Detection &amp; Sorting System</h3>
+        <span class="role mono">FINAL YEAR PROJECT</span>
+      </div>
+      <p class="desc">A working recyclable-waste sorting line: a custom-trained YOLOv8n model identifies metal, paper, and plastic in real time, deployed via TensorFlow Lite on a Raspberry Pi 3, driving servo-actuated diverters over a DC-motor conveyor. Supervised by Prof. Dr. Abdul Sattar Saand.</p>
+      <div class="stat-row">
+        <div class="stat"><span class="num">98.7%</span><span class="lbl">mAP50</span></div>
+        <div class="stat"><span class="num">9.1</span><span class="lbl">FPS on-device</span></div>
+        <div class="stat"><span class="num">59/60</span><span class="lbl">live detections</span></div>
+        <div class="stat"><span class="num">₨15,350</span><span class="lbl">hardware BOM</span></div>
+      </div>
+      <div class="tags">
+        <span class="tag">YOLOv8n</span>
+        <span class="tag">TensorFlow Lite</span>
+        <span class="tag">Raspberry Pi 3</span>
+        <span class="tag">OpenCV</span>
+        <span class="tag">Tkinter GUI</span>
+        <span class="tag">Patent filed</span>
+      </div>
+
+      <div class="gallery">
+        <figure class="gallery-wide">
+          <img src="img/fyp_hardware.png" alt="Physical prototype of the conveyor belt sorting system with servo diverters and Raspberry Pi control box">
+          <figcaption>The physical build — conveyor, diverters, and Pi control box</figcaption>
+        </figure>
+        <figure>
+          <img src="img/fyp_pipeline.png" alt="Perception, decision, and action pipeline: frame capture, preprocessing, YOLOv8n inference, class-to-bin mapping, servo trigger">
+          <figcaption>Signal pipeline — capture to servo trigger</figcaption>
+        </figure>
+        <figure>
+          <img src="img/fyp_architecture.png" alt="System architecture diagram showing camera, YOLOv8 model, TensorFlow Lite, Raspberry Pi, servos, and sorting bins">
+          <figcaption>System architecture</figcaption>
+        </figure>
+        <figure>
+          <img src="img/fyp_wiring.png" alt="Wiring diagram showing Raspberry Pi GPIO connections to motor driver, servos, camera, and power supplies">
+          <figcaption>GPIO &amp; power wiring</figcaption>
+        </figure>
+        <figure>
+          <img src="img/fyp_detections.png" alt="Four live detection screenshots showing YOLOv8n correctly classifying metal, plastic, and paper items">
+          <figcaption>Live on-device detections</figcaption>
+        </figure>
+        <figure>
+          <img src="img/fyp_gui.png" alt="Custom Tkinter control panel GUI showing running sort counts for metal, paper, and plastic">
+          <figcaption>Sorter control panel (Tkinter)</figcaption>
+        </figure>
+        <figure>
+          <img src="img/fyp_training_curves.png" alt="YOLOv8n training curves showing loss, precision, recall, and mAP over training epochs">
+          <figcaption>Model training curves</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <h2 class="section-title" style="margin-top:48px;">ACADEMIC PROJECTS</h2>
+    <div class="coursework">
+      <div class="cw-item">
+        <span class="cw-sem mono">SEMESTER 3</span>
+        <div class="cw-body">
+          <h3>550 W Solar PV Module Simulation</h3>
+          <p>Modeled and simulated a 550 W solar PV module in MATLAB Simulink, analyzing efficiency, output power, and V-I characteristics against theoretical calculations.</p>
+          <a class="doc-link mono" href="docs/Solar_PV_Simulation.docx">Download report (.docx)</a>
+        </div>
+      </div>
+      <div class="cw-item">
+        <span class="cw-sem mono">SEMESTER 4</span>
+        <div class="cw-body">
+          <h3>Efficiency of Transformers — Open-Ended Lab</h3>
+          <p>Investigated transformer efficiency and loss mechanisms — copper, hysteresis, eddy current, and stray load losses — through circuit simulation and graphed results.</p>
+          <a class="doc-link mono" href="docs/Transformer_Efficiency_Lab.docx">Download report (.docx)</a>
+        </div>
+      </div>
+      <div class="cw-item">
+        <span class="cw-sem mono">SEMESTER 5</span>
+        <div class="cw-body">
+          <h3>Cruise Control System in Simulink</h3>
+          <p>Built a vehicle cruise-control model in Simulink with a PID-controlled throttle loop, auto-tuned via the PID Tuner App to hold a driver-set reference speed.</p>
+          <a class="doc-link mono" href="docs/Cruise_Control_Simulink.docx">Download report (.docx)</a>
+        </div>
+      </div>
+      <div class="cw-item">
+        <span class="cw-sem mono">SEMESTER 6</span>
+        <div class="cw-body">
+          <h3>Simple Open-Loop Offline UPS (1.75 kW)</h3>
+          <p>Power Electronics CEP assignment — sized a DC-DC boost converter and 48V battery bank for a residential offline UPS, with break-before-make transfer logic simulated end-to-end in Simulink.</p>
+          <a class="doc-link mono" href="docs/UPS_Design_Report.docx">Download report (.docx)</a>
+        </div>
+      </div>
+      <div class="cw-item">
+        <span class="cw-sem mono">SEMESTER 6</span>
+        <div class="cw-body">
+          <h3>IoT Weather Station (Simulated)</h3>
+          <p>MATLAB-based IoT weather station simulating temperature, humidity, and pressure sensors with live plotting, CSV logging, threshold alerts, and MQTT placeholders for cloud connectivity.</p>
+          <a class="doc-link mono" href="docs/IoT_Weather_Station.docx">Download report (.docx)</a>
+        </div>
+      </div>
+    </div>
+
+    <h2 id="research" class="section-title" style="margin-top:48px;">RESEARCH PAPERS</h2>
+    <div class="project featured">
+      <div class="project-head">
+        <h3>Harmonic Performance Comparison of MMC and CHB Multilevel Converters for HVDC Systems under PSPWM Control</h3>
+        <span class="role mono">PUBLISHED · HEC RECOGNIZED</span>
+      </div>
+      <p class="desc">Published in <em>Spectrum of Engineering Sciences</em> (Vol. 4, No. 3, 2026, pp. 1846–1856), an HEC-recognized journal. Compared MMC and CHB multilevel converter topologies for HVDC transmission under Phase-Shifted PWM control, using MATLAB/Simulink models of a 13-level configuration and FFT-based harmonic analysis. Co-authored with Ghulam Mustafa Bhutto, Munwar Ayaz Memon, Huzefa Shakeel Ahmed, Aslam Pervez Memon, Ahmed Sameer Raza, and Laiba Memon.</p>
+      <div class="stat-row">
+        <div class="stat"><span class="num">3.38%</span><span class="lbl">THD — MMC</span></div>
+        <div class="stat"><span class="num">5.52%</span><span class="lbl">THD — CHB</span></div>
+        <div class="stat"><span class="num">38.7%</span><span class="lbl">THD improvement</span></div>
+        <div class="stat"><span class="num">13-level</span><span class="lbl">converter config</span></div>
+      </div>
+      <div class="tags">
+        <span class="tag">HVDC Systems</span>
+        <span class="tag">MMC / CHB Converters</span>
+        <span class="tag">PSPWM</span>
+        <span class="tag">MATLAB Simulink</span>
+        <span class="tag">FFT Harmonic Analysis</span>
+      </div>
+      <a class="doc-link mono" href="https://thesesjournal.com/index.php/1/article/view/2430" target="_blank" rel="noopener">View published paper</a>
+    </div>
+
+    <div class="project">
+      <div class="project-head">
+        <h3>Speed Control Analysis of DC Motor Drive under Variable Load Conditions Using PID Controller</h3>
+        <span class="role mono">SEMESTER 7</span>
+      </div>
+      <p class="desc">Modeled a separately-excited DC motor in MATLAB Simulink and analyzed PID-based speed control under dynamic load disturbances, evaluating rise time, settling time, steady-state error, and disturbance rejection. Co-authored with Huzefa Shakeel.</p>
+      <div class="tags">
+        <span class="tag">PID Control</span>
+        <span class="tag">MATLAB Simulink</span>
+        <span class="tag">DC Motor Drives</span>
+      </div>
+      <a class="doc-link mono" href="docs/PID_DC_Motor_Paper.docx">Download paper (.docx)</a>
+    </div>
+    <div class="project">
+      <div class="project-head">
+        <h3>Mitigating Frequency Instability in Hybrid Renewable Energy Systems Connected to Weak Grids</h3>
+        <span class="role mono">SEMESTER 7</span>
+      </div>
+      <p class="desc">A case study of Pakistan's Jhampir Wind Corridor — modeled a 500 MW wind + solar HRES on a weak grid and analyzed Rate of Change of Frequency during generation loss, proposing a battery sizing methodology for synthetic inertia support.</p>
+      <div class="tags">
+        <span class="tag">Power Systems</span>
+        <span class="tag">Grid Stability</span>
+        <span class="tag">Renewable Energy</span>
+      </div>
+      <a class="doc-link mono" href="docs/HRES_Grid_Stability_Paper.docx">Download paper (.docx)</a>
+    </div>
+
+    <h2 class="section-title" style="margin-top:48px;">EXPERIENCE</h2>
+    <div class="exp-item">
+      <span class="period mono">INTERNSHIP</span>
+      <div>
+        <h3>PIA Engineering &amp; Maintenance</h3>
+        <p>Summer internship — hands-on exposure to engineering and maintenance operations.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2 class="section-title">CONTACT</h2>
+    <div class="contact-grid">
+      <div class="contact-item">
+        <span class="k">EMAIL</span>
+        <a href="mailto:your.email@example.com">your.email@example.com</a>
+      </div>
+      <div class="contact-item">
+        <span class="k">PHONE</span>
+        <a href="tel:+92000000000">+92 3xx xxxxxxx</a>
+      </div>
+      <div class="contact-item">
+        <span class="k">LINKEDIN</span>
+        <a href="#">linkedin.com/in/your-handle</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 Muhammad Huzaifa Rajput. Built for the field, not the boardroom.</p>
+  </footer>
+</div>
+
+</body>
+</html>
